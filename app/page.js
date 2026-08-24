@@ -13,6 +13,7 @@ import {
   AB_TEST,
   COMMS,
   SEGMENTS,
+  SEGMENT_DESCRIPTIONS,
   weightedEngagement,
   fmtInt,
   fmtPct,
@@ -40,6 +41,7 @@ export default function Home() {
     name: `Segmento ${e.key}`,
     rate: e.rate,
     isBest: e.key === topSegment,
+    desc: SEGMENT_DESCRIPTIONS[e.key],
     sub: `${fmtInt(e.clicks)} clics (email + inapp) sobre ${fmtInt(
       e.exposure
     )} aperturas + views`,
@@ -53,7 +55,7 @@ export default function Home() {
           <span className="hero-eyebrow">Pago Nube · Argentina</span>
           <h1>Resultados de la campaña de Baja de Tasas</h1>
           <p className="subtitle">
-            Comunicación a comercios de Growth y Retention para incentivar la
+            Comunicación a merchants de Growth y Retention para incentivar la
             activación de Pago Nube y de cuotas, con medición de conversión
             sobre el GPV registrado entre el 10/8 y el 20/8.
           </p>
@@ -69,7 +71,7 @@ export default function Home() {
             </div>
             <div className="hero-highlight">
               <div className="value">{fmtInt(GENERAL.impacted)}</div>
-              <div className="label">Comercios impactados</div>
+              <div className="label">Merchants impactados</div>
             </div>
             <div className="hero-highlight">
               <div className="value">{fmtPct(GENERAL.coverage)}</div>
