@@ -119,6 +119,34 @@ export const SEGMENT_DESCRIPTIONS = {
   E: "No usa Pago Nube, no ofrece card/cuotas con la competencia",
 };
 
+// Benchmark: campaña anterior "Baja de tasas - julio"
+export const BENCHMARK_JULY = {
+  label: "Baja de tasas · julio",
+  general: { impacted: 18552, conversions: 1240, cvr: 6.68 },
+  growth: { cvr: 5.88 },
+  retention: { cvr: 7.53 },
+};
+
+// Variación relativa (para conteos: impactados, conversiones)
+export function pctDelta(current, prev) {
+  const pct = ((current - prev) / prev) * 100;
+  const sign = pct >= 0 ? "+" : "";
+  return `${sign}${pct.toLocaleString("es-AR", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  })}%`;
+}
+
+// Variación en puntos porcentuales (para tasas: CVR, cobertura, etc.)
+export function ppDelta(current, prev) {
+  const diff = current - prev;
+  const sign = diff >= 0 ? "+" : "";
+  return `${sign}${diff.toLocaleString("es-AR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })} p.p.`;
+}
+
 // Engagement ponderado = (clics email + clics inapp) / (aperturas email + views inapp)
 export function weightedEngagement(seg) {
   const clicks = seg.email.clicks + seg.inapp.clicks;
