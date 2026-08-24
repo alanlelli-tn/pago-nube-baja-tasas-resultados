@@ -14,6 +14,9 @@ import {
   COMMS,
   SEGMENTS,
   SEGMENT_DESCRIPTIONS,
+  BENCHMARK_JULY,
+  pctDelta,
+  ppDelta,
   weightedEngagement,
   fmtInt,
   fmtPct,
@@ -95,10 +98,38 @@ export default function Home() {
 
           <div className="stat-grid">
             <StatCard label="Audiencia potencial" value={fmtInt(GENERAL.audience)} />
-            <StatCard label="Impactados" value={fmtInt(GENERAL.impacted)} />
+            <StatCard
+              label="Impactados"
+              value={fmtInt(GENERAL.impacted)}
+              compareLabel="vs. jul"
+              compareValue={`${fmtInt(BENCHMARK_JULY.general.impacted)} (${pctDelta(
+                GENERAL.impacted,
+                BENCHMARK_JULY.general.impacted
+              )})`}
+              trend={GENERAL.impacted >= BENCHMARK_JULY.general.impacted ? "up" : "down"}
+            />
             <StatCard label="Cobertura" value={fmtPct(GENERAL.coverage)} />
-            <StatCard label="Conversiones" value={fmtInt(GENERAL.conversions)} />
-            <StatCard label="CVR" value={fmtPct(GENERAL.cvr)} accent />
+            <StatCard
+              label="Conversiones"
+              value={fmtInt(GENERAL.conversions)}
+              compareLabel="vs. jul"
+              compareValue={`${fmtInt(BENCHMARK_JULY.general.conversions)} (${pctDelta(
+                GENERAL.conversions,
+                BENCHMARK_JULY.general.conversions
+              )})`}
+              trend={GENERAL.conversions >= BENCHMARK_JULY.general.conversions ? "up" : "down"}
+            />
+            <StatCard
+              label="CVR"
+              value={fmtPct(GENERAL.cvr)}
+              accent
+              compareLabel="vs. jul"
+              compareValue={`${fmtPct(BENCHMARK_JULY.general.cvr)} (${ppDelta(
+                GENERAL.cvr,
+                BENCHMARK_JULY.general.cvr
+              )})`}
+              trend={GENERAL.cvr >= BENCHMARK_JULY.general.cvr ? "up" : "down"}
+            />
           </div>
         </div>
       </section>
@@ -111,11 +142,12 @@ export default function Home() {
             <h2>La conversión no fue pareja entre ambos segmentos</h2>
             <p>
               Retention convirtió a una tasa ~5,6x superior a Growth, aunque
-              con audiencias de tamaño similar.
+              con audiencias de tamaño similar. Vs. la campaña de julio,
+              Retention mejoró y Growth retrocedió.
             </p>
           </div>
 
-          <GrowthRetention growth={GROWTH} retention={RETENTION} />
+          <GrowthRetention growth={GROWTH} retention={RETENTION} benchmark={BENCHMARK_JULY} />
         </div>
       </section>
 
