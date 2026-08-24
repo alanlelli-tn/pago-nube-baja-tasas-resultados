@@ -111,6 +111,14 @@ export const SEGMENTS = [
   },
 ];
 
+export const SEGMENT_DESCRIPTIONS = {
+  A: "Usa Pago Nube, con card",
+  B: "Usa Pago Nube, sin card",
+  C: "Usa Pago Nube, sin card, pero ofrece card con competencia",
+  D: "No usa Pago Nube, ofrece card/cuotas con la competencia",
+  E: "No usa Pago Nube, no ofrece card/cuotas con la competencia",
+};
+
 // Engagement ponderado = (clics email + clics inapp) / (aperturas email + views inapp)
 export function weightedEngagement(seg) {
   const clicks = seg.email.clicks + seg.inapp.clicks;
